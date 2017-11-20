@@ -9,7 +9,7 @@ def get_index(request):
 def logout(request):
     auth.logout(request)
     messages.success(request, "You have successfully logged out")
-    return redirect(get_index)
+    return redirect('home')
     
 def login(request):
     if request.method=="POST":
@@ -17,7 +17,7 @@ def login(request):
         
         
         if form.is_valid():
-            user = auth.authenticate(username=form.cleaned_data['username_or_Email'],
+            user = auth.authenticate(username=form.cleaned_data['username_or_email'],
                                      password=form.cleaned_data['password'])
             
             if user is not None:
@@ -39,7 +39,7 @@ def login(request):
         
         
     return render(request, "login.html", {'form': form})
-    
+
 def register(request):
     if request.method=="POST":
         form = UserRegistrationForm(request.POST)
@@ -60,6 +60,6 @@ def register(request):
     
     return render(request, "register.html", {'form':form})
  
-@login_required()   
+@login_required() 
 def profile(request):
      return render(request, 'profile.html')
