@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from blog.views import get_posts, viewpost, newpost, editpost
+from .views import get_posts, viewpost, newpost, editpost,deletepost, addcomment
 
 urlpatterns = [
     
@@ -7,5 +7,7 @@ urlpatterns = [
     url(r'^posts/(\d+)$', viewpost, name ="viewpost"),
     url(r'^posts/add', newpost, name="newpost"),
     url(r'^posts/(\d+)/edit$', editpost, name="editpost"),
+    url(r'^posts/(\d+)/delete$', deletepost, name="deletepost"),
+    url(r'^posts/(\d+)/comments/add$', addcomment, name="add_comment"),
     
     ]
